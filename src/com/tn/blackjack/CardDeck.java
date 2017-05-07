@@ -40,22 +40,6 @@ public class CardDeck implements Deck<Card> {
     }
 
     @Override
-    public Card[] dealCards(int n) {
-        if(deck.size() < n) {
-            throw new IllegalStateException("Not enough cards left in deck");
-        }
-
-        Card[] cardsToDeal = new Card[n];
-        for(int i = 0; i < n; i++) {
-            Card card = deck.get(i);
-            deck.remove(i);
-            cardsToDeal[i] = card;
-            dealtCards.add(card);
-        }
-        return cardsToDeal;
-    }
-
-    @Override
     public void shuffle() {
         Collections.shuffle(deck);
     }
