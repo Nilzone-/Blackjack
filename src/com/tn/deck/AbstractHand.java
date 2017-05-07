@@ -10,11 +10,8 @@ import java.util.List;
 public abstract class AbstractHand<T extends Suitable & Rankable> {
     protected List<T> hand = new ArrayList<>();
 
-    public void drawCard(T o) {
-        hand.add(o);
-    }
-
-    public void drawCards(T[] o) {
+    @SafeVarargs
+    public final void drawCards(T... o) {
         hand.addAll(Arrays.asList(o));
     }
 

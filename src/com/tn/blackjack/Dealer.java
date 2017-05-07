@@ -1,5 +1,7 @@
 package com.tn.blackjack;
 
+import java.util.Arrays;
+
 /**
  * Created by thomasnilsen on 06/05/2017.
  */
@@ -11,12 +13,8 @@ public class Dealer extends Hand {
     }
 
     public void startInitialDealingOfCards(Player[] players) {
-        for(Player player : players) {
-            Card[] initialCards = deck.dealCards(2);
-            player.drawCards(initialCards);
-        }
-        Card[] dealersInitialCards = deck.dealCards(2);
-        drawCards(dealersInitialCards);
+        Arrays.stream(players).forEach(player -> player.drawCards(deck.dealCard(), deck.dealCard()));
+        drawCards(deck.dealCard(), deck.dealCard());
     }
 
     @Override

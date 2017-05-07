@@ -5,6 +5,5 @@ package com.tn.deck;
  */
 public interface Deck<T extends Suitable & Rankable> {
     T dealCard();
-    T[] dealCards(int n);
     void shuffle();
 }
