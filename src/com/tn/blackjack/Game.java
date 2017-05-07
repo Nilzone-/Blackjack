@@ -18,8 +18,8 @@ public class Game {
     }
 
     public void start() {
-        dealer.startInitialDealingOfCards(players);
-        dealer.status();
-        Arrays.stream(players).forEach(Player::status);
+        dealer.dealInitialTwoCards(players);
+        dealer.printStatus();
+        Arrays.stream(players).forEach(Player::printStatus);
     }
 }

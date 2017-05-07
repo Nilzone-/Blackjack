@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by thomasnilsen on 06/05/2017.
  */
-public abstract class AbstractHand<T extends Suitable & Rankable> {
+public abstract class AbstractOperation<T extends Suitable & Rankable> {
     protected List<T> hand = new ArrayList<>();
 
     @SafeVarargs
@@ -15,6 +15,6 @@ public abstract class AbstractHand<T extends Suitable & Rankable> {
         hand.addAll(Arrays.asList(o));
     }
 
-    public abstract void status();
+    public abstract void printStatus();
     public abstract int calculateScore();
 }
