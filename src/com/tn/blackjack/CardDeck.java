@@ -12,12 +12,10 @@ import java.util.stream.Collectors;
  * Created by thomasnilsen on 01/05/2017.
  */
 public class CardDeck implements Deck<Card> {
-    private List<Card> deck;
-    private List<Card> dealtCards;
+    private List<Card> deck = initializeDeckWith(Suit.values(), Rank.values());
+    private List<Card> dealtCards =  new ArrayList<>();
 
-    CardDeck(Suit[] suits, Rank[] ranks) {
-        this.deck = initializeDeckWith(suits, ranks);
-        this.dealtCards = new ArrayList<>();
+    CardDeck() {
         shuffle();
     }
 
