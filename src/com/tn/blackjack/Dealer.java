@@ -9,7 +9,7 @@ public class Dealer extends AbstractPlayer {
     private CardDeck deck;
 
     Dealer() {
-        this.deck = new CardDeck(Suit.values(), Rank.values());
+        this.deck = new CardDeck();
     }
 
     public void dealInitialTwoCards(Player[] players) {
