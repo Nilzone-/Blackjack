@@ -8,10 +8,18 @@ import java.util.Scanner;
 public class Prompter {
     private Scanner scanner = new Scanner(System.in);
 
+    public void printStatus(AbstractPlayer player) {
+        player.hand.forEach(Card::print);
+        System.out.printf("( score of %d )", player.calculateScore());
+        System.out.printf(player.hasBlackjack() ?
+                "\tBLACKJACK" : player.isBust() ?
+                "\tBUST" : "");
+    }
+
     public State getState() {
         String answer;
         do {
-            System.out.printf("%nDo you want to (H)it or (S)tand? ");
+            System.out.printf("%n%nDo you want to (H)it or (S)tand? ");
             answer = scanner.nextLine().trim().toUpperCase();
         } while (!answer.equals("H") && !answer.equals("S"));
 
@@ -21,7 +29,7 @@ public class Prompter {
                     break;
             case "S": state = State.STAND;
                     break;
-            default: state = State.UNDEFINED;
+            default: state = null;
         }
         return state;
     }
