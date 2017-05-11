@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
 public class CardDeck implements Deck<Card> {
     private List<Card> deck;
 
-
     CardDeck() {
         this.deck = initializeDeck(Suit.values(), Rank.values());
         shuffle();
@@ -43,7 +42,6 @@ public class CardDeck implements Deck<Card> {
         }
         Card card = deck.get(0);
         deck.remove(0);
-
         return card;
     }
 
