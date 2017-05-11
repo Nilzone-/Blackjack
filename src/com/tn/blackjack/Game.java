@@ -16,7 +16,7 @@ public class Game {
 
     public void start() {
         dealer.dealInitialTwoCards(players);
-        dealer.askPlayerToPerformAction(players);
+        dealer.startPlayerLoop(players);
     }
 
     private void initializePlayers() {
@@ -25,6 +25,5 @@ public class Game {
         this.players = IntStream.rangeClosed(1, numberOfPlayers)
                 .mapToObj(Player::new)
                 .toArray(Player[]::new);
-
     }
 }
