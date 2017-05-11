@@ -8,11 +8,15 @@ import java.util.List;
  * Created by thomasnilsen on 07/05/2017.
  */
 public abstract class AbstractPlayer {
-    private static final int WINNING_NUMBER = 21;
+    static final int WINNING_NUMBER = 21;
     List<Card> hand = new ArrayList<>();
 
     final void drawCards(Card... cards) {
         hand.addAll(Arrays.asList(cards));
+    }
+
+    final boolean hasBlackjack() {
+        return calculateScore() == WINNING_NUMBER;
     }
 
     final int calculateScore() {
@@ -23,6 +27,7 @@ public abstract class AbstractPlayer {
     }
 
     public abstract void printStatus();
+
 
     private boolean containsAce() {
         return hand.stream().anyMatch(card -> card.getRank() == Rank.ACE);
