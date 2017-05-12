@@ -19,7 +19,7 @@ public class Dealer extends AbstractPlayer {
     }
 
     public void startPlayerLoop(Player[] players) {
-        Arrays.stream(players).forEach(player -> player.performAction(deck.dealCard()));
+        Arrays.stream(players).forEach(player -> player.performAction(deck));
     }
 
     private void initializeDeck() {
