@@ -15,6 +15,10 @@ public class AbstractPlayer {
         return hand.stream().anyMatch(card -> card.getRank() == Rank.ACE);
     }
 
+    private int countAces() {
+        return (int) hand.stream().filter(card -> card.getRank() == Rank.ACE).count();
+    }
+
     final void drawCards(Card... cards) {
         hand.addAll(Arrays.asList(cards));
     }
@@ -29,8 +33,15 @@ public class AbstractPlayer {
 
     final int calculateScore() {
         int score = hand.stream().mapToInt(card -> card.getRank().getValue()).sum();
-        return score > WINNING_NUMBER && containsAce() ?
-                score - 10 : //Takes care of ace being either 1 or 11
-                score;
+        if(score > WINNING_NUMBER && containsAce()) {
+            int numberOfAces = countAces();
+            while(numberOfAces-- > 0) {
+                score -= 10;
+                if(score <= WINNING_NUMBER) {
+                    break;
+                }
+            }
+        }
+        return score;
     }
 }
