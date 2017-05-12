@@ -13,8 +13,7 @@ public class CardDeck implements Deck<Card> {
     private List<Card> deck;
 
     CardDeck() {
-        this.deck = initializeDeck(Suit.values(), Rank.values());
-        shuffle();
+        this(1);
     }
 
     CardDeck(int numberOfDecks) {
@@ -37,12 +36,10 @@ public class CardDeck implements Deck<Card> {
 
     @Override
     public Card dealCard() {
-        if(deck.size() < 1) {
+        if(deck.isEmpty()) {
             throw new IllegalStateException("Deck is empty");
         }
-        Card card = deck.get(0);
-        deck.remove(0);
-        return card;
+        return deck.remove(0);
     }
 
     @Override

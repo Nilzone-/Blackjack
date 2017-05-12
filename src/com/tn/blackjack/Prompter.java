@@ -6,6 +6,8 @@ import java.util.Scanner;
  * Created by thomasnilsen on 10/05/2017.
  */
 public class Prompter {
+    private static final String HIT = "H";
+    private static final String STAND = "S";
     private Scanner scanner = new Scanner(System.in);
 
     public void printStatus(AbstractPlayer player) {
@@ -21,15 +23,15 @@ public class Prompter {
         do {
             System.out.printf("%n%nDo you want to (H)it or (S)tand? ");
             answer = scanner.nextLine().trim().toUpperCase();
-        } while (!answer.equals("H") && !answer.equals("S"));
+        } while (!answer.equals(HIT) && !answer.equals(STAND));
 
         State state;
         switch (answer) {
-            case "H": state = State.HIT;
+            case HIT: state = State.HIT;
                     break;
-            case "S": state = State.STAND;
+            case STAND: state = State.STAND;
                     break;
-            default: state = null;
+            default: throw new IllegalStateException();
         }
         return state;
     }
