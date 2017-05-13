@@ -6,11 +6,10 @@ import java.util.Arrays;
  * Created by thomasnilsen on 06/05/2017.
  */
 public class Dealer extends AbstractPlayer {
-    private Prompter prompter = new Prompter();
     private CardDeck deck;
 
-    Dealer() {
-        initializeDeck();
+    public Dealer(int numberOfDecks) {
+        initialize(numberOfDecks);
     }
 
     public void dealInitialTwoCards(Player[] players) {
@@ -22,15 +21,11 @@ public class Dealer extends AbstractPlayer {
         Arrays.stream(players).forEach(player -> player.performAction(deck));
     }
 
-    private void initializeDeck() {
-        int numberOfDecks = prompter.ask("How many decks should be used? ");
+    private void initialize(int numberOfDecks) {
         if(numberOfDecks < 1) {
             throw new IllegalArgumentException("Deck size must be at least 1");
         }
-
-        this.deck = numberOfDecks > 1 ?
-                new CardDeck(numberOfDecks) :
-                new CardDeck();
+        this.deck = new CardDeck(numberOfDecks);
     }
 
 }
