@@ -12,24 +12,20 @@ import java.util.stream.IntStream;
 public class CardDeck implements Deck<Card> {
     private List<Card> deck;
 
-    CardDeck() {
-        this(1);
-    }
-
     CardDeck(int numberOfDecks) {
-        this.deck = initializeMultipleDecks(numberOfDecks, Suit.values(), Rank.values());
+        this.deck = initializeDecks(numberOfDecks, Suit.values(), Rank.values());
         shuffle();
     }
 
-    private List<Card> initializeDeck(Suit[] suits, Rank[] ranks) {
+    private List<Card> initializeDecks(Suit[] suits, Rank[] ranks) {
         return Arrays.stream(suits)
                 .flatMap(suit -> Arrays.stream(ranks).map(rank -> new Card(suit, rank)))
                 .collect(Collectors.toList());
     }
 
-    private List<Card> initializeMultipleDecks(int numberOfDecks, Suit[] suits, Rank[] ranks) {
+    private List<Card> initializeDecks(int numberOfDecks, Suit[] suits, Rank[] ranks) {
         return IntStream.range(0, numberOfDecks)
-                .mapToObj(i -> initializeDeck(suits, ranks))
+                .mapToObj(i -> initializeDecks(suits, ranks))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
