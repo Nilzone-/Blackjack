@@ -1,8 +1,6 @@
 package com.tn.blackjack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by thomasnilsen on 07/05/2017.
@@ -10,6 +8,10 @@ import java.util.List;
 public class AbstractPlayer {
     private static final int WINNING_NUMBER = 21;
     List<Card> hand = new ArrayList<>();
+
+    AbstractPlayer() {
+
+    }
 
     private boolean containsAce() {
         return hand.stream().anyMatch(card -> card.getRank() == Rank.ACE);
@@ -31,6 +33,10 @@ public class AbstractPlayer {
         return calculateScore() == WINNING_NUMBER;
     }
 
+    final State getCurrentState() {
+        return isBust() ? State.BUST : hasBlackjack() ? State.BLACKJACK : State.PLAYABLE;
+    }
+
     final int calculateScore() {
         int score = hand.stream().mapToInt(card -> card.getRank().getValue()).sum();
         if(score > WINNING_NUMBER && containsAce()) {
@@ -44,4 +50,5 @@ public class AbstractPlayer {
         }
         return score;
     }
+
 }
