@@ -9,6 +9,9 @@ public class Dealer extends AbstractPlayer {
     private CardDeck deck;
 
     public Dealer(int numberOfDecks) {
+        if(numberOfDecks < 1) {
+            throw new IllegalArgumentException("Must be at least 1 deck");
+        }
         this.deck = new CardDeck(numberOfDecks);
     }
 

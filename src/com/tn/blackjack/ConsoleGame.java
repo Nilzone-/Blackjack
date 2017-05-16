@@ -30,10 +30,6 @@ public class ConsoleGame implements Game {
         }
 
         int numberOfDecks = prompter.ask("How many decks should be used? ");
-        if(numberOfDecks < 1) {
-            throw new IllegalArgumentException("Must be at least 1 deck");
-        }
-
         this.dealer = new Dealer(numberOfDecks);
         this.players = IntStream.rangeClosed(1, numberOfPlayers)
                 .mapToObj(Player::new)
