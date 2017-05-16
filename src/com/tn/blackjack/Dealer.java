@@ -24,4 +24,8 @@ public class Dealer extends AbstractPlayer {
         Arrays.stream(players).forEach(player -> player.drawCards(deck.dealCard(), deck.dealCard()));
     }
 
+    @Override
+    public void performAction(Action action, Card card) {
+
+    }
 }

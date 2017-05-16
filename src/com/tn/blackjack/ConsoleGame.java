@@ -1,5 +1,6 @@
 package com.tn.blackjack;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 /**
@@ -12,11 +13,13 @@ public class ConsoleGame implements Game {
 
     public ConsoleGame() {
         initialize();
-        startInitialDealingOfCards();
     }
 
     public void start() {
-        startPlayerLoop();
+        startInitialDealingOfCards();
+        do {
+            askPlayersForAction();
+        } while (isPlayersNotDone());
     }
 
     @Override
@@ -44,22 +47,31 @@ public class ConsoleGame implements Game {
     }
 
     @Override
-    public void startPlayerLoop() {
+    public void askPlayersForAction() {
         for (Player player : players) {
+            if(player.getLastAction() == Action.STAND) {
+                continue;
+            }
             prompter.printStatus(player);
             if (player.getCurrentState() == State.PLAYABLE) {
                 Action action = prompter.getAction();
                 Card card = dealer.dealCardToPlayer();
-
-                if(action == Action.STAND) {
-                    continue;
-                }
-
                 player.performAction(action, card);
-                prompter.printStatus(player);
+                if (player.isBust() || player.hasBlackjack()) {
+                    prompter.printStatus(player);
+                }
             }
         }
     }
 
+    @Override
+    public void askDealerForAction() {
+        
+    }
 
+    private boolean isPlayersNotDone() {
+        return Arrays.stream(players).anyMatch(player ->
+                player.getCurrentState() == State.PLAYABLE &&
+                player.getLastAction() != Action.STAND);
+    }
 }

@@ -6,5 +6,6 @@ package com.tn.blackjack;
 public interface Game {
     void initialize();
     void startInitialDealingOfCards();
-    void startPlayerLoop();
+    void askPlayersForAction();
+    void askDealerForAction();
 }

@@ -5,13 +5,9 @@ import java.util.*;
 /**
  * Created by thomasnilsen on 07/05/2017.
  */
-public class AbstractPlayer {
+public abstract class AbstractPlayer {
     private static final int WINNING_NUMBER = 21;
     List<Card> hand = new ArrayList<>();
-
-    AbstractPlayer() {
-
-    }
 
     private boolean containsAce() {
         return hand.stream().anyMatch(card -> card.getRank() == Rank.ACE);
@@ -50,5 +46,7 @@ public class AbstractPlayer {
         }
         return score;
     }
+
+    public abstract void performAction(Action action, Card card);
 
 }
