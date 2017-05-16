@@ -47,6 +47,13 @@ public abstract class AbstractPlayer {
         return score;
     }
 
-    public abstract void performAction(Action action, Card card);
+    /**
+     * Made this abstract due to Blackjack rules where the dealer has to hit until the cards total 17
+     * whereas the player don't need to do this
+     *
+     * @param action
+     * @param card
+     */
+    public abstract void performAction(Action action, Card... card);
 
 }

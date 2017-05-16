@@ -66,7 +66,7 @@ public class ConsoleGame implements Game {
 
     @Override
     public void askDealerForAction() {
-        
+
     }
 
     private boolean isPlayersNotDone() {

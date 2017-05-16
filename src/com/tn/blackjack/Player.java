@@ -16,7 +16,7 @@ public class Player extends AbstractPlayer {
     }
 
     @Override
-    public void performAction(Action action, Card card) {
+    public void performAction(Action action, Card... card) {
         switch (action) {
             case HIT: drawCards(card);
                 break;

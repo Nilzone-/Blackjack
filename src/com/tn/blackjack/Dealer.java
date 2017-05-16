@@ -25,7 +25,7 @@ public class Dealer extends AbstractPlayer {
     }
 
     @Override
-    public void performAction(Action action, Card card) {
+    public void performAction(Action action, Card... card) {
 
     }
 }
