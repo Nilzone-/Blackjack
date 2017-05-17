@@ -9,23 +9,26 @@ public class Dealer extends AbstractPlayer {
     private CardDeck deck;
 
     public Dealer(int numberOfDecks) {
-        initialize(numberOfDecks);
-    }
-
-    public void dealInitialTwoCards(Player[] players) {
-        Arrays.stream(players).forEach(player -> player.drawCards(deck.dealCard(), deck.dealCard()));
-        drawCards(deck.dealCard(), deck.dealCard());
-    }
-
-    public void startPlayerLoop(Player[] players) {
-        Arrays.stream(players).forEach(player -> player.performAction(deck));
-    }
-
-    private void initialize(int numberOfDecks) {
         if(numberOfDecks < 1) {
-            throw new IllegalArgumentException("Deck size must be at least 1");
+            throw new IllegalArgumentException("Must be at least 1 deck");
         }
         this.deck = new CardDeck(numberOfDecks);
     }
 
+    public void dealInitialTwoCardsToSelf() {
+        drawCards(deck.dealCard(), deck.dealCard());
+    }
+
+    public Card dealCardToPlayer() {
+        return deck.dealCard();
+    }
+
+    public void dealInitialTwoCards(Player[] players) {
+        Arrays.stream(players).forEach(player -> player.drawCards(deck.dealCard(), deck.dealCard()));
+    }
+
+    @Override
+    public void performAction(Action action, Card... card) {
+
+    }
 }

@@ -1,15 +1,16 @@
 package com.tn.blackjack;
 
-import com.tn.deck.Deck;
-
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
  * Created by thomasnilsen on 01/05/2017.
  */
-public class CardDeck implements Deck<Card> {
+public class CardDeck {
     private List<Card> deck;
 
     CardDeck(int numberOfDecks) {
@@ -30,7 +31,6 @@ public class CardDeck implements Deck<Card> {
                 .collect(Collectors.toList());
     }
 
-    @Override
     public Card dealCard() {
         if(deck.isEmpty()) {
             throw new IllegalStateException("Deck is empty");
@@ -38,8 +38,7 @@ public class CardDeck implements Deck<Card> {
         return deck.remove(0);
     }
 
-    @Override
-    public void shuffle() {
+    private void shuffle() {
         Collections.shuffle(deck);
     }
 }

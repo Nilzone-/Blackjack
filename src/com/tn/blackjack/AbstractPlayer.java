@@ -1,15 +1,14 @@
 package com.tn.blackjack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by thomasnilsen on 07/05/2017.
  */
-public class AbstractPlayer {
+public abstract class AbstractPlayer {
     private static final int WINNING_NUMBER = 21;
     List<Card> hand = new ArrayList<>();
+    Action lastAction;
 
     private boolean containsAce() {
         return hand.stream().anyMatch(card -> card.getRank() == Rank.ACE);
@@ -31,6 +30,10 @@ public class AbstractPlayer {
         return calculateScore() == WINNING_NUMBER;
     }
 
+    final State getCurrentState() {
+        return isBust() ? State.BUST : hasBlackjack() ? State.BLACKJACK : State.PLAYABLE;
+    }
+
     final int calculateScore() {
         int score = hand.stream().mapToInt(card -> card.getRank().getValue()).sum();
         if(score > WINNING_NUMBER && containsAce()) {
@@ -44,4 +47,14 @@ public class AbstractPlayer {
         }
         return score;
     }
+
+    /**
+     * Made this abstract due to Blackjack rules where the dealer has to hit until the cards total 17
+     * whereas the player don't need to do this
+     *
+     * @param action
+     * @param card
+     */
+    abstract void performAction(Action action, Card... card);
+
 }

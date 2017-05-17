@@ -21,7 +21,8 @@ public class Card {
         return rank;
     }
 
-    public void print() {
-        System.out.printf("%s%s ", suit.getIcon(), rank.getName());
+    @Override
+    public String toString() {
+        return suit.getIcon() + "" + rank.getName() + " ";
     }
 }
