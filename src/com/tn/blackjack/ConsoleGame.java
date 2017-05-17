@@ -64,7 +64,7 @@ public class ConsoleGame implements Game {
 
     private boolean isPlayersNotDone() {
         return Arrays.stream(players).anyMatch(player ->
-                player.getCurrentState() == State.PLAYABLE &&
+                player.getCurrentState() != State.BUST &&
                 player.lastAction != Action.STAND);
     }
 }
