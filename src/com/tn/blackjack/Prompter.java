@@ -1,5 +1,6 @@
 package com.tn.blackjack;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -21,6 +22,12 @@ public class Prompter {
         System.out.printf(player.hasBlackjack() ?
                 "\tBLACKJACK%n" : player.isBust() ?
                 "\tBUST%n" : "%n");
+    }
+
+    public void printStatus(AbstractPlayer[] players) {
+        System.out.printf("%n%n********* Current Status ********* %n");
+        Arrays.stream(players).forEach(this::printStatus);
+        System.out.printf("%n********************************** %n%n");
     }
 
     public Action getAction() {

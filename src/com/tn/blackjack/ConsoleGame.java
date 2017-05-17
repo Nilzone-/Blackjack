@@ -19,6 +19,7 @@ public class ConsoleGame implements Game {
         startInitialDealingOfCards();
         do {
             askPlayersForAction();
+            prompter.printStatus(players);
         } while (isPlayersNotDone());
     }
 
@@ -48,14 +49,11 @@ public class ConsoleGame implements Game {
             if(player.getLastAction() == Action.STAND) {
                 continue;
             }
-            prompter.printStatus(player);
             if (player.getCurrentState() == State.PLAYABLE) {
+                prompter.printStatus(player);
                 Action action = prompter.getAction();
                 Card card = dealer.dealCardToPlayer();
                 player.performAction(action, card);
-                if (player.isBust() || player.hasBlackjack()) {
-                    prompter.printStatus(player);
-                }
             }
         }
     }
