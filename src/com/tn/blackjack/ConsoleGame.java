@@ -23,7 +23,6 @@ public class ConsoleGame implements Game {
         } while (isPlayersNotDone());
     }
 
-    @Override
     public void initialize() {
         int numberOfPlayers = prompter.ask("Not including the dealer - How many players? ");
         if(numberOfPlayers < 1) {
