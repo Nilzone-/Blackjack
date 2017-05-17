@@ -8,6 +8,7 @@ import java.util.*;
 public abstract class AbstractPlayer {
     private static final int WINNING_NUMBER = 21;
     List<Card> hand = new ArrayList<>();
+    Action lastAction;
 
     private boolean containsAce() {
         return hand.stream().anyMatch(card -> card.getRank() == Rank.ACE);
@@ -54,6 +55,6 @@ public abstract class AbstractPlayer {
      * @param action
      * @param card
      */
-    public abstract void performAction(Action action, Card... card);
+    abstract void performAction(Action action, Card... card);
 
 }

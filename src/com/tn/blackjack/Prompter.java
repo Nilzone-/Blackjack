@@ -20,8 +20,9 @@ public class Prompter {
         player.hand.forEach(this::printObject);
         System.out.printf("( score of %d )", player.calculateScore());
         System.out.printf(player.hasBlackjack() ?
-                "\tBLACKJACK%n" : player.isBust() ?
-                "\tBUST%n" : "%n");
+                "\tBLACKJACK" : player.isBust() ?
+                "\tBUST" : "\tPLAYABLE");
+        System.out.printf("\tLast Action: %s%n", player.lastAction);
     }
 
     public void printStatus(AbstractPlayer[] players) {

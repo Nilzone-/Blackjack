@@ -5,14 +5,9 @@ package com.tn.blackjack;
  */
 public class Player extends AbstractPlayer {
     private final int id;
-    private Action lastAction;
 
     Player(int id) {
         this.id = id;
-    }
-
-    public Action getLastAction() {
-        return lastAction;
     }
 
     @Override

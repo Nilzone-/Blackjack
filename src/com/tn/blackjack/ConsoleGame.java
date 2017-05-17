@@ -45,10 +45,10 @@ public class ConsoleGame implements Game {
     @Override
     public void askPlayersForAction() {
         for (Player player : players) {
-            if(player.getLastAction() == Action.STAND) {
+            if(player.lastAction == Action.STAND) {
                 continue;
             }
-            if (player.getCurrentState() == State.PLAYABLE) {
+            if (player.getCurrentState() != State.BUST) {
                 prompter.printStatus(player);
                 Action action = prompter.getAction();
                 Card card = dealer.dealCardToPlayer();
@@ -65,6 +65,6 @@ public class ConsoleGame implements Game {
     private boolean isPlayersNotDone() {
         return Arrays.stream(players).anyMatch(player ->
                 player.getCurrentState() == State.PLAYABLE &&
-                player.getLastAction() != Action.STAND);
+                player.lastAction != Action.STAND);
     }
 }
