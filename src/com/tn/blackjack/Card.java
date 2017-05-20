@@ -4,7 +4,7 @@ package com.tn.blackjack;
  * Created by thomasnilsen on 01/05/2017.
  */
 
-public class Card {
+class Card {
     private final Suit suit;
     private final Rank rank;
 
@@ -13,11 +13,11 @@ public class Card {
         this.rank = rank;
     }
 
-    public Suit getSuit() {
+    Suit getSuit() {
         return suit;
     }
 
-    public Rank getRank() {
+    Rank getRank() {
         return rank;
     }
 
