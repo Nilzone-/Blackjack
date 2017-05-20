@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 /**
  * Created by thomasnilsen on 01/05/2017.
  */
-public class CardDeck {
+class CardDeck {
     private List<Card> deck;
 
     CardDeck(int numberOfDecks) {
@@ -31,9 +31,9 @@ public class CardDeck {
                 .collect(Collectors.toList());
     }
 
-    public Card dealCard() {
+    Card dealCard() {
         if(deck.isEmpty()) {
-            throw new IllegalStateException("Deck is empty");
+            deck = initializeDecks(1, Suit.values(), Rank.values());
         }
         return deck.remove(0);
     }

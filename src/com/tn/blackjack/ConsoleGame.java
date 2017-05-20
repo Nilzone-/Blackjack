@@ -21,9 +21,16 @@ public class ConsoleGame implements Game {
             askPlayersForAction();
             prompter.printStatus(players);
         } while (isPlayersNotDone());
+
+        do {
+            dealersTurn();
+        } while (dealersNotDone());
+        prompter.printStatus(dealer);
+
+        prompter.printWinners(dealer, players);
     }
 
-    public void initialize() {
+    private void initialize() {
         int numberOfPlayers = prompter.ask("Not including the dealer - How many players? ");
         if(numberOfPlayers < 1) {
             throw new IllegalArgumentException("Must be at least 1 player");
@@ -51,20 +58,27 @@ public class ConsoleGame implements Game {
             if (player.getCurrentState() != State.BUST) {
                 prompter.printStatus(player);
                 Action action = prompter.getAction();
-                Card card = dealer.dealCardToPlayer();
+                Card card = dealer.dealCard();
                 player.performAction(action, card);
             }
         }
     }
 
     @Override
-    public void askDealerForAction() {
-
+    public void dealersTurn() {
+        Card card = dealer.dealCard();
+        prompter.printStatus(dealer);
+        dealer.performAction(null, card);
     }
 
     private boolean isPlayersNotDone() {
         return Arrays.stream(players).anyMatch(player ->
                 player.getCurrentState() != State.BUST &&
                 player.lastAction != Action.STAND);
+    }
+
+    private boolean dealersNotDone() {
+        return dealer.lastAction != Action.STAND &&
+                dealer.getCurrentState() != State.BUST;
     }
 }

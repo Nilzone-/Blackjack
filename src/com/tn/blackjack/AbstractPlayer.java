@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by thomasnilsen on 07/05/2017.
  */
-public abstract class AbstractPlayer {
+abstract class AbstractPlayer {
     private static final int WINNING_NUMBER = 21;
     List<Card> hand = new ArrayList<>();
     Action lastAction;
@@ -26,6 +26,7 @@ public abstract class AbstractPlayer {
         return calculateScore() > WINNING_NUMBER;
     }
 
+    final boolean hasRealBlackjack() { return hasBlackjack() && hand.size() == 2; }
     final boolean hasBlackjack() {
         return calculateScore() == WINNING_NUMBER;
     }
