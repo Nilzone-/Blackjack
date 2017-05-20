@@ -15,11 +15,8 @@ class Prompter {
     private Scanner scanner = new Scanner(System.in);
 
     void printStatus(AbstractPlayer player) {
-        if(player instanceof Player) {
-            System.out.printf("%n ==== %s ==== %n", player.toString());
-        } else {
-            System.out.printf("Dealer%n");
-        }
+        String p = (player instanceof Player) ? player.toString() : "Dealer";
+        System.out.printf("%n ==== %s ==== %n", p);
         player.hand.forEach(this::printObject);
         System.out.printf("( score of %d )", player.calculateScore());
         System.out.printf(player.hasBlackjack() ?
