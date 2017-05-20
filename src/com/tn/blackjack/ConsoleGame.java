@@ -25,7 +25,7 @@ public class ConsoleGame implements Game {
         do {
             dealersTurn();
         } while (isDealerNotDone());
-
+        prompter.printStatus(dealer);
         prompter.printWinners(dealer, players);
     }
 
