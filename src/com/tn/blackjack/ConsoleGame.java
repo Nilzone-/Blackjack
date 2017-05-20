@@ -24,8 +24,7 @@ public class ConsoleGame implements Game {
 
         do {
             dealersTurn();
-        } while (dealersNotDone());
-        prompter.printStatus(dealer);
+        } while (isDealerNotDone());
 
         prompter.printWinners(dealer, players);
     }
@@ -77,7 +76,7 @@ public class ConsoleGame implements Game {
                 player.lastAction != Action.STAND);
     }
 
-    private boolean dealersNotDone() {
+    private boolean isDealerNotDone() {
         return dealer.lastAction != Action.STAND &&
                 dealer.getCurrentState() != State.BUST;
     }
