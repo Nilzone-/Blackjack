@@ -33,14 +33,16 @@ class Prompter {
 
     void printWinners(Dealer dealer, Player[] players) {
         System.out.printf("%n%n********* End Game Result ********* %n");
-        Arrays.stream(players).forEach(player -> {
-            System.out.printf("%n Dealer (%d) vs. Player %s (%d) (Winner is: %s)",
-                    dealer.calculateScore(),
-                    player.toString(),
-                    player.calculateScore(),
-                    getWinner(dealer, player));
-        });
+        Arrays.stream(players).forEach(player -> printWinner(dealer, player));
         System.out.printf("%n%n*********************************** %n%n");
+    }
+
+    private void printWinner(Dealer dealer, Player player) {
+        System.out.printf("%n Dealer (%d) vs. Player %s (%d) (Winner is: %s)",
+                dealer.calculateScore(),
+                player.toString(),
+                player.calculateScore(),
+                getWinner(dealer, player));
     }
 
     Action getAction() {
