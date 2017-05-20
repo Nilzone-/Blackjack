@@ -3,7 +3,7 @@ package com.tn.blackjack;
 /**
  * Created by thomasnilsen on 05/05/2017.
  */
-public class Player extends AbstractPlayer {
+class Player extends AbstractPlayer {
     private final int id;
 
     Player(int id) {
@@ -21,7 +21,7 @@ public class Player extends AbstractPlayer {
 
     @Override
     public String toString() {
-        return id + "";
+        return "Player " + id;
     }
 
 }
