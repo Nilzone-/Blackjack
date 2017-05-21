@@ -50,17 +50,12 @@ public class ConsoleGame implements Game {
 
     @Override
     public void askPlayersForAction() {
-        for (Player player : players) {
-            if(player.lastAction == Action.STAND) {
-                continue;
-            }
-            if (player.getCurrentState() != State.BUST) {
-                prompter.printStatus(player);
-                Action action = prompter.getAction();
-                Card card = dealer.dealCard();
-                player.performAction(action, card);
-            }
-        }
+        Arrays.stream(players)
+                .filter(player -> player.lastAction != Action.STAND && player.getCurrentState() != State.BUST)
+                .forEach(player -> {
+                    prompter.printStatus(player);
+                    player.performAction(prompter.getAction(), dealer.dealCard());
+                });
     }
 
     @Override
