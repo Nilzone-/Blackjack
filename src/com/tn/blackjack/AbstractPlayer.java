@@ -27,6 +27,7 @@ abstract class AbstractPlayer {
     }
 
     final boolean hasRealBlackjack() { return hasBlackjack() && hand.size() == 2; }
+
     final boolean hasBlackjack() {
         return calculateScore() == WINNING_NUMBER;
     }
